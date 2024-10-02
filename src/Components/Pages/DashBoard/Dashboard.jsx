@@ -4,6 +4,7 @@ import BookMark from "./Bookmarks";
 import { IoUnlink } from "react-icons/io5";
 import { Link } from "react-router-dom";
 import Activity from "./Activity"
+import Watch from "../../DigitalWatch/Watch"
 
 
 const DashBoard = () => {
@@ -21,8 +22,8 @@ const DashBoard = () => {
           </div>
           <div className="bg-neutral-800 w-full h-[55%] p-2 rounded-lg shadow-md">
             <h3 className="text-xl font-sans mb-2">Tracker</h3>
-            {/* <Calender/> */}
-          </div>
+            <Watch/>
+            </div>
         </div>
 
         <div className="w-[50%] flex space-x-2 justify-between h-full">
