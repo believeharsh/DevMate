@@ -3,6 +3,7 @@ import MainContextProvider from "./Context/MainContext/Maincontext";
 import { Suspense, lazy, useContext } from "react";
 import { Navigate } from "react-router-dom";
 import Spinner from "./Components/General/Spinner";
+impo
 
 // Lazy-loaded components
 const GetTasks = lazy(() => import("./Components/TodoPages/AllTasks/GetTasks"));
@@ -40,7 +41,7 @@ function App() {
     <Router>
       <MainContextProvider>
         <Suspense fallback={<Spinner />}>
-          
+          {/* <SmoothScrolling/> */}
           <Routes>
             {/* Home route with nested routes */}
             <Route path="/login" element={<Login />} />
@@ -79,3 +80,5 @@ function App() {
 }
 
 export default App;
+
+
