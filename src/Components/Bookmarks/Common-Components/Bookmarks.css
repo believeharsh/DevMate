@@ -155,6 +155,19 @@
     @apply flex justify-between;
   }
 
+  .EditingPanleLabels {
+    @apply block text-sm font-bold mb-1
+  }
+  .EditingPanelBTn {
+    @apply block px-4 py-1 text-sm w-full text-left hover:bg-gray-700
+  }
+  .EditingPanelInputs {
+    @apply w-full px-2 py-1 border rounded bg-gray-700
+  }
+  .EditingBM-Btn {
+    @apply  text-white px-4 py-2  hover:border-[0.4px] rounded-xl hover:border-gray-400 
+  }
+
 /* editing-panel.css */
 
 /* Container for the editing panel */

@@ -29,50 +29,50 @@ const EditBookmark = ({ BM, handleEditSubmit, handleDeleteBM, closeEditPanel }) 
   };
 
   return (
-    <div className="editBM-container">
-      <form onSubmit={onSubmit}>
-        <div className="mb-2">
-          <label className="editBM-label">Text:</label>
-          <input
-            type="text"
-            value={editedText}
-            onChange={handleTextChange}
-            className="editBM-input"
-          />
-        </div>
-        <div className="mb-2">
-          <label className="editBM-label">URL:</label>
-          <input
-            type="text"
-            value={editedUrl}
-            onChange={handleUrlChange}
-            className="editBM-input"
-          />
-        </div>
-        <div className="editBM-buttons">
-          <button
-            type="submit"
-            className="editBM-button editBM-save"
-          >
-            Save
-          </button>
-          <button
-            type="button"
-            onClick={() => handleDeleteBM(BM.id)}
-            className="editBM-button editBM-delete"
-          >
-            Delete
-          </button>
-          <button
-            type="button"
-            onClick={closeEditPanel}
-            className="editBM-button editBM-cancel"
-          >
-            Cancel
-          </button>
-        </div>
-      </form>
-    </div>
+    <div className="p-4  text-white bg-transparent w-full">
+    <form onSubmit={onSubmit}>
+      <div className="mb-2">
+        <label className="EditingPanleLabels">Text:</label>
+        <input
+          type="text"
+          value={editedText}
+          onChange={handleTextChange}
+          className="EditingPanelInputs"
+        />
+      </div>
+      <div className="mb-2">
+        <label className="EditingPanleLabels">URL:</label>
+        <input
+          type="text"
+          value={editedUrl}
+          onChange={handleUrlChange}
+          className="EditingPanelInputs"
+        />
+      </div>
+      <div className="flex justify-end gap-1">
+        <button
+          type="submit"
+          className="EditingBM-Btn"
+        >
+          Save
+        </button>
+        <button
+          type="button"
+          onClick={() => handleDeleteBM(BM.id, category)}
+          className="EditingBM-Btn"
+        >
+          Delete
+        </button>
+        <button
+          type="button"
+          onClick={closeEditPanel}
+          className="EditingBM-Btn"
+        >
+          Cancel
+        </button>
+      </div>
+    </form>
+  </div>
   );
 };
 
