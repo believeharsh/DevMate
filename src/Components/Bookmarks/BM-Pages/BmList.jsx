@@ -55,7 +55,7 @@ const Bmlist = ({ handleEditBM, handleDeleteBM, BookMark }) => {
   return (
     <>
       <div className="BMlist-container">
-        {/* Conditionally render the EditBookmark if there is an edit in progress */}
+  
         {editBM ? (
           <EditBookmark
             BM={editBM}
