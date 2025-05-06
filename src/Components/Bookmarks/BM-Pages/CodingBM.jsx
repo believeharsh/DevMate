@@ -1,5 +1,6 @@
 import React from "react";
-import Bmlist from "./BmList";
+// import Bmlist from "./BmList";
+import {BmList} from "../../index" ; 
 import '../Common-Components/Bookmarks.css'; 
 import { UseCodingBM } from "../../../Context/BookMark-Context/Coding-Context/CodingContext-Provider";
 
@@ -8,7 +9,7 @@ const CodingBMs = () => {
   return (
     <div className="">
     <div>
-      <Bmlist
+      <BmList
         handleAddBM={handleAddBM}
         BookMark={BookMark}
         handleDeleteBM={handleDeleteBM}

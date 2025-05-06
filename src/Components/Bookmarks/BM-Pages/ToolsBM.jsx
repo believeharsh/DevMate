@@ -1,6 +1,6 @@
 import React from "react";
 import AddnewBM from "../Common-Components/AddnewBM";
-import Bmlist from "./BmList";
+import {BmList} from "../../index.js" ; 
 import '../Common-Components/Bookmarks.css'; 
 import { UseToolsBM } from "../../../Context/BookMark-Context/Tools-Context/ToolsContext-Provider";
 
@@ -9,7 +9,7 @@ const ToolsBMs = () => {
   return (
     <div className="">
       <div>
-        <Bmlist
+        <BmList
           handleAddBM={handleAddBM}
           BookMark={BookMark}
           handleDeleteBM={handleDeleteBM}

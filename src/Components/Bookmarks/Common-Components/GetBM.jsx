@@ -1,5 +1,5 @@
 import React from "react";
-import AddnewBM from "./AddnewBM";
+import {AddnewBM} from "../../index.js"
 import { UseSocialBM } from "../../../Context/BookMark-Context/Social-Context/SocialContext-Provider";
 import { UseToolsBM } from "../../../Context/BookMark-Context/Tools-Context/ToolsContext-Provider";
 import "../Common-Components/Bookmarks.css";

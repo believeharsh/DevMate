@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import './Bookmarks.css'; // Import the CSS file
-import Header from "../../Pages/Header/Header";
+import {Header} from "../../index.js" ; 
 
 const  Navigation = () => {
   return (

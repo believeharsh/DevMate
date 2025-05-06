@@ -1,5 +1,5 @@
 import React from "react";
-import Bmlist from "./BmList";
+import {BmList} from "../../index.js" ; 
 import "../Common-Components/Bookmarks.css";
 import { UseSocialBM } from "../../../Context/BookMark-Context/Social-Context/SocialContext-Provider";
 
@@ -8,7 +8,7 @@ const SocialBM = () => {
   return (
     <div className="">
       <div>
-        <Bmlist
+        <BmList
           handleAddBM={handleAddBM}
           BookMark={BookMark}
           handleDeleteBM={handleDeleteBM}

@@ -1,5 +1,5 @@
 import React from "react";
-import TaskList from "./Tasklist";
+import {TaskList} from "../../index.js"
 import { useImpTask } from "../../../Context/Todo-Context/ImportantTasks/ImpTaskProvider";
 
 const ImpTasklist = () => {

@@ -1,8 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import { BsThreeDotsVertical } from "react-icons/bs";
-import CommonBM from "../Common-Components/CommonBM";
-import EditBookmark from "../Common-Components/EditBM";
-import EditingPannel from "../Common-Components/EditingPannel";
+import {CommonBM, EditBookmark, EditingPannel} from "../../index" ; 
 import "../../Bookmarks/Common-Components/Bookmarks.css";
 
 const Bmlist = ({ handleEditBM, handleDeleteBM, BookMark }) => {

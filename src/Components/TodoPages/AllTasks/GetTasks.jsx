@@ -1,8 +1,6 @@
 import React from "react";
 import { Navigate, Outlet, useLocation } from "react-router-dom";
-import AddNewTask from "../Tasks/AddNewTask";
-import Header from "../Header/Header";
-import Navbar from "../Navbar/Navbar";
+import {Header, Navbar, AddNewTask} from "../../index.js"
 import { useTodayTask } from "../../../Context/Todo-Context/TodayTasks/TodayTaskProvider";
 import { useMissingTask } from "../../../Context/Todo-Context/MissingTasks/MissingTaskProvider";
 import { useImpTask } from "../../../Context/Todo-Context/ImportantTasks/ImpTaskProvider";
