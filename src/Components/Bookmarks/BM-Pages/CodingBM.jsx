@@ -1,5 +1,4 @@
 import React from "react";
-// import Bmlist from "./BmList";
 import {BmList} from "../../index" ; 
 import '../Common-Components/Bookmarks.css'; 
 import { UseCodingBM } from "../../../Context/BookMark-Context/Coding-Context/CodingContext-Provider";
