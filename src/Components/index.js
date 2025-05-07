@@ -27,5 +27,9 @@ export {default as Navbar} from "./TodoPages/Navbar/Navbar.jsx"
 export {default as TaskList} from "./TodoPages/Tasks/Tasklist.jsx"
 export {default as EditingPannel} from "./Bookmarks/Common-Components/EditingPannel.jsx"
 
+export {default as Login} from "../Components/Pages/Auth/Login.jsx"
+export {default as Signup} from "../Components/Pages/Auth/Signup.jsx"
+export {default as Logout} from "../Components/Pages/Auth/Logout.jsx"
+
 
 

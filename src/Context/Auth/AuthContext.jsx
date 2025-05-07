@@ -1,36 +1,27 @@
-import React, { createContext, useReducer, useEffect } from 'react';
+import { createContext, useContext, useEffect, useState } from "react";
+import { onAuthStateChanged } from "firebase/auth";
+import { auth } from "../../firebase-config.js";
 
-const INITIAL_STATE = {
-  currentUser: JSON.parse(localStorage.getItem('details')) || null,
-};
+const AuthContext = createContext();
 
-export const AuthContext = createContext(INITIAL_STATE);
-
-const authReducer = (state, action) => {
-  switch (action.type) {
-    case 'LOGIN':
-      return {
-        currentUser: action.payload,
-      };
-    case 'LOGOUT':
-      return {
-        currentUser: null,
-      };
-    default:
-      return state;
-  }
-};
-
-export const AuthContextProvider = ({ children }) => {
-  const [state, dispatch] = useReducer(authReducer, INITIAL_STATE);
+export const AuthProvider = ({ children }) => {
+  const [currentUser, setCurrentUser] = useState(null);
+  const [loading, setLoading] = useState(true); // 👈 Wait for auth check
 
   useEffect(() => {
-    localStorage.setItem('details', JSON.stringify(state.currentUser));
-  }, [state.currentUser]);
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      setCurrentUser(user);
+      setLoading(false); 
+    });
+
+    return unsubscribe; // Cleanup
+  }, []);
 
   return (
-    <AuthContext.Provider value={{ currentUser: state.currentUser, dispatch }}>
-      {children}
+    <AuthContext.Provider value={{ currentUser }}>
+      {!loading && children} {/* 👈 Don’t render app until auth is checked */}
     </AuthContext.Provider>
   );
 };
+
+export const useAuth = () => useContext(AuthContext);
