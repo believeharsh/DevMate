@@ -5,7 +5,7 @@ import { useAuth } from "../../../Context/Auth/AuthContext";
 const Sidebar = () => {
 
   const { currentUser } = useAuth();
-  console.log(currentUser);
+  
   return (
     <div className="fixed bg-neutral-800 top-0 left-0 bottom-0 w-[15%] text-white p-4">
       <div className="flex flex-col justify-between h-full">

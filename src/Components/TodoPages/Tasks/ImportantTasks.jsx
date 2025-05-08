@@ -1,18 +1,15 @@
 import React from "react";
-import {TaskList} from "../../index.js"
-import { useImpTask } from "../../../Context/Todo-Context/ImportantTasks/ImpTaskProvider";
+import { TaskList } from "../../index.js";
+import { useTodo } from "../../../Context/Todo-Context/ToDoContext.jsx"
 
 const ImpTasklist = () => {
-  const { Tasks, handleEditTask, handledeleteTask, toggleTaskCompletion } = useImpTask();
+  const { todos } = useTodo();
 
-  return (
-    <TaskList
-      tasks={Tasks}
-      handleEditTask={handleEditTask}
-      handleDeleteTask={handledeleteTask}
-      toggleTaskCompletion={toggleTaskCompletion}
-    />
-  );
+  // Filter only important tasks
+  const importantTasks = (todos || []).filter(task => task.type === "important" );
+
+
+  return <TaskList tasks={importantTasks} />;
 };
 
 export default ImpTasklist;

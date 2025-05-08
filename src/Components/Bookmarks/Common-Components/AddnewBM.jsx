@@ -3,23 +3,28 @@ import { FaPlus } from "react-icons/fa";
 import { v4 as uuidv4 } from "uuid";
 import './Bookmarks.css'; 
 
-const AddnewBM = ({handleAddBM}) => {
+const AddnewBM = ({category, handleAddBM}) => {
 
   const [bookmarkText, setBookmarkText] = useState("");
   const [bookmarkUrl, setBookmarkUrl] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (!bookmarkText || !bookmarkUrl) return;
+  
     const newBM = {
-      id: uuidv4(),
       text: bookmarkText,
-      url: bookmarkUrl, 
-    }
-    handleAddBM(newBM);
-
+      url: bookmarkUrl,
+      category: category // 👈 pass category properly
+      // No need for id or createdAt here
+    };
+  
+    handleAddBM(newBM); // context should add serverTimestamp()
+  
     setBookmarkText("");
     setBookmarkUrl("");
   };
+  
 
   return (
     <>

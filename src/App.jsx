@@ -1,13 +1,15 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import MainContextProvider from "./Context/MainContext/Maincontext";
+
 import { Suspense } from "react";
 import { Spinner, GetTasks, GetBM, SocialBM, CodingBM, ToolsBM, TodayTasklist, MissingTasklist, ImpTasklist, Watch, Reminder, Settings, AppContainer, DashBoard, Login, Signup, Logout} from "./Components/index.js";
 import { Navigate } from "react-router-dom";
 import { useAuth } from "./Context/Auth/AuthContext.jsx";
+import { BookmarksProvider } from "./Context/BookMark-Context/BookMarkContext.jsx";
+import TodoContextProvider from "./Context/Todo-Context/ToDoContext.jsx";
 
 function ProtectedRoute({ children }) {
   const { currentUser } = useAuth();
-  console.log(currentUser)
+
   return currentUser ? children : <Navigate to="/login" />;
 }
 
@@ -15,7 +17,8 @@ function App() {
 
   return (
     <Router>
-      <MainContextProvider>
+      <BookmarksProvider>
+      <TodoContextProvider>
         <Suspense fallback={<Spinner />}>
           {/* <SmoothScrolling/> */}
           <Routes>
@@ -48,7 +51,8 @@ function App() {
           </Routes>
 
         </Suspense>
-      </MainContextProvider>
+        </TodoContextProvider>
+      </BookmarksProvider>
     </Router>
   );
 }

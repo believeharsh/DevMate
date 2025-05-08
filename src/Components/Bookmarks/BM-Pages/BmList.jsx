@@ -1,11 +1,15 @@
 import React, { useState, useRef, useEffect } from "react";
 import { BsThreeDotsVertical } from "react-icons/bs";
-import {CommonBM, EditBookmark, EditingPannel} from "../../index" ; 
+import { CommonBM, EditBookmark, EditingPannel } from "../../index";
+import { useBookmarks } from "../../../Context/BookMark-Context/BookMarkContext";
 import "../../Bookmarks/Common-Components/Bookmarks.css";
 
-const Bmlist = ({ handleEditBM, handleDeleteBM, BookMark }) => {
+const Bmlist = ({ category }) => {
   const [editBM, setEditBM] = useState(null);
   const [panelOpenId, setPanelOpenId] = useState(null);
+  const { bookmarks, updateBookmark, deleteBookmark } = useBookmarks();
+  // Filter bookmarks by category
+  const filteredBookmarks = bookmarks.filter((BM) => BM.category === category);
 
   const panelRef = useRef({});
   const buttonRef = useRef({});
@@ -15,18 +19,21 @@ const Bmlist = ({ handleEditBM, handleDeleteBM, BookMark }) => {
   };
 
   const openEditPanel = (BmId) => {
-    const BMToEdit = BookMark.find((BM) => BM.id === BmId);
+    const BMToEdit = filteredBookmarks.find((BM) => BM.id === BmId);
     setEditBM(BMToEdit);
-    setPanelOpenId(null); // Close the panel when opening the edit form
+    setPanelOpenId(null);
   };
 
   const closeEditPanel = () => {
-    setEditBM(null); // Close the edit panel by setting editBM to null
+    setEditBM(null);
   };
 
-  const handleEditSubmit = (BmId, editedText, editedUrl) => {
-    handleEditBM(BmId, editedText, editedUrl);
-    setEditBM(null); // Reset editBM after submission
+  const handleEditSubmit = async (BmId, editedText, editedUrl) => {
+    await updateBookmark(BmId, {
+      text: editedText, 
+      url: editedUrl,
+    });
+    setEditBM(null);
   };
 
   const handleClickOutside = (e) => {
@@ -51,53 +58,49 @@ const Bmlist = ({ handleEditBM, handleDeleteBM, BookMark }) => {
   }, [panelOpenId]);
 
   return (
-    <>
-      <div className="BMlist-container">
-  
-        {editBM ? (
-          <EditBookmark
-            BM={editBM}
-            handleEditSubmit={handleEditSubmit}
-            handleDeleteBM={handleDeleteBM}
-            closeEditPanel={closeEditPanel}
-          />
-        ) : (
-          BookMark.map((BM) => {
-            const isPanelOpen = panelOpenId === BM.id;
+    <div className="BMlist-container">
+      {editBM ? (
+        <EditBookmark
+          BM={editBM}
+          handleEditSubmit={handleEditSubmit}
+          handleDeleteBM={deleteBookmark}
+          closeEditPanel={closeEditPanel}
+        />
+      ) : (
+        filteredBookmarks.map((BM) => {
+          const isPanelOpen = panelOpenId === BM.id;
 
-            return (
-              <div key={BM.id} className="group BMlist-bookmark-item">
-                <div className="BMlist-bookmark-content">
-                  <div className="flex justify-center items-center">
-                    <CommonBM BM={BM} />
-                  </div>
-
-                  <button
-                    className="BMlist-edit-button"
-                    onClick={() => togglePanel(BM.id)}
-                    ref={(el) => (buttonRef.current[BM.id] = el)}
-                  >
-                    <BsThreeDotsVertical />
-                  </button>
+          return (
+            <div key={BM.id} className="group BMlist-bookmark-item">
+              <div className="BMlist-bookmark-content">
+                <div className="flex justify-center items-center">
+                  <CommonBM BM={BM} />
                 </div>
 
-                <div>
-                  {isPanelOpen && (
-                    <EditingPannel
-                      BM={BM}
-                      panelRef={(el) => (panelRef.current[BM.id] = el)}
-                      openEditPanel={openEditPanel}
-                      handleDeleteBM={handleDeleteBM}
-                    />
-                  )}
-                </div>
+                <button
+                  className="BMlist-edit-button"
+                  onClick={() => togglePanel(BM.id)}
+                  ref={(el) => (buttonRef.current[BM.id] = el)}
+                >
+                  <BsThreeDotsVertical />
+                </button>
               </div>
-            );
-          })
-        )}
-      </div>
-    </>
+
+              {isPanelOpen && (
+                <EditingPannel
+                  BM={BM}
+                  panelRef={(el) => (panelRef.current[BM.id] = el)}
+                  openEditPanel={openEditPanel}
+                  handleDeleteBM={deleteBookmark}
+                />
+              )}
+            </div>
+          );
+        })
+      )}
+    </div>
   );
 };
 
 export default Bmlist;
+

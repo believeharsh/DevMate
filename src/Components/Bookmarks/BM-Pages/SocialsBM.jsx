@@ -1,22 +1,10 @@
 import React from "react";
-import {BmList} from "../../index.js" ; 
 import "../Common-Components/Bookmarks.css";
-import { UseSocialBM } from "../../../Context/BookMark-Context/Social-Context/SocialContext-Provider";
+import { BmList } from "../../index";
 
 const SocialBM = () => {
-  const { handleAddBM, handleDeleteBM, handleEditBM, BookMark } = UseSocialBM();
-  return (
-    <div className="">
-      <div>
-        <BmList
-          handleAddBM={handleAddBM}
-          BookMark={BookMark}
-          handleDeleteBM={handleDeleteBM}
-          handleEditBM={handleEditBM}
-        />
-      </div>
-    </div>
-  );
+  return <BmList category="social" />;
 };
 
 export default SocialBM;
+

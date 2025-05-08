@@ -2,27 +2,25 @@ import React, { useState, useRef, useEffect } from "react";
 import { MdDeleteOutline } from "react-icons/md";
 import { CiEdit, CiMedicalCross } from "react-icons/ci";
 import { BsThreeDotsVertical } from "react-icons/bs";
-import "./Tasks.css"
+import "./Tasks.css";
+import { useTodo } from "../../../Context/Todo-Context/ToDoContext";
 
-const TaskList = ({
-  tasks,
-  handleEditTask,
-  handleDeleteTask,
-  toggleTaskCompletion,
-}) => {
+const TaskList = ({ tasks }) => {
+  const { editTodo , toggleTaskCompletion, deleteTodo} = useTodo();
   const [editTaskId, setEditTaskId] = useState(null);
   const [editedTaskText, setEditedTaskText] = useState("");
   const [panelOpenId, setPanelOpenId] = useState(null);
   const panelRefs = useRef({});
   const buttonRefs = useRef({});
 
+
   const handleEditInputChange = (e) => {
     setEditedTaskText(e.target.value);
   };
 
-  const handleEditSubmit = (taskId) => {
-    if (editedTaskText !== "") {
-      handleEditTask(taskId, editedTaskText);
+  const handleEditSubmit = async (taskId) => {
+    if (editedTaskText.trim() !== "") {
+      await editTodo(taskId, { text: editedTaskText });
       setEditTaskId(null);
       setEditedTaskText("");
     } else {
@@ -37,7 +35,7 @@ const TaskList = ({
   };
 
   const togglePanel = (taskId) => {
-    setPanelOpenId(panelOpenId === taskId ? null : taskId); // Toggle open/close for the same task
+    setPanelOpenId(panelOpenId === taskId ? null : taskId);
   };
 
   const openEditPanel = (taskId) => {
@@ -47,7 +45,6 @@ const TaskList = ({
   };
 
   const handleClickOutside = (e) => {
-    // Close panel if clicked outside
     if (panelOpenId) {
       const panelRef = panelRefs.current[panelOpenId];
       const buttonRef = buttonRefs.current[panelOpenId];
@@ -101,7 +98,7 @@ const TaskList = ({
                     className={`cursor-pointer font-sans text-xl ${
                       task.completed ? "line-through text-gray-500" : ""
                     } line-clamp-2`}
-                    onClick={() => toggleTaskCompletion(task.id)}
+                    onClick={() => toggleTaskCompletion(task.id, task.completed)}
                   >
                     {task.text}
                   </span>
@@ -120,10 +117,8 @@ const TaskList = ({
                       {isPanelOpen && (
                         <div
                           ref={(el) => (panelRefs.current[task.id] = el)}
-                     
                           className="threedot-panel"
                         >
-                  
                           <button
                             className="threedot-panel-btns"
                             onClick={() => openEditPanel(task.id)}
@@ -132,13 +127,13 @@ const TaskList = ({
                           </button>
                           <button
                             className="threedot-panel-btns"
-                            onClick={() => toggleTaskCompletion(task.id)}
+                            onClick={() => toggleTaskCompletion(task.id, task.completed)}
                           >
                             <CiMedicalCross />
                           </button>
                           <button
                             className="threedot-panel-btns"
-                            onClick={() => handleDeleteTask(task.id)}
+                            onClick={() => deleteTodo(task.id)}
                           >
                             <MdDeleteOutline />
                           </button>

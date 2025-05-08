@@ -1,39 +1,39 @@
-import React, { useContext } from "react";
-import { useState } from "react";
+import React, { useState } from "react";
 import { FaPlus } from "react-icons/fa";
-import "./Tasks.css"
+import { useTodo } from "../../../Context/Todo-Context/ToDoContext"; 
+import "./Tasks.css";
 
-const AddNewTask = ({handleAddTask}) => {
-  const [inputValue, setinputValue] = useState("");
+const AddNewTask = ({ type, handleAddTask }) => {
+  const [inputValue, setInputValue] = useState("");
+  const { addTodo } = useTodo(); 
 
   const handleChange = (e) => {
-    setinputValue(e.target.value);
+    setInputValue(e.target.value);
   };
-  const handleSubmit = (e) => {
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    handleAddTask(inputValue);
-    setinputValue("");
+    if (!inputValue.trim()) return;
+
+    handleAddTask({ text: inputValue, type, completed: false }); 
+    setInputValue("");
   };
 
   return (
-    <>
-      <form onSubmit={handleSubmit}>
-        <div className="flex mb-4">
-        
-          <input
-            type="text"
-            value={inputValue}
-            onChange={handleChange}
-            placeholder="Enter task"
-            className="NewTask-input"
-          />
-          <button type="submit" className="NewTask-Add-btn">
-          <FaPlus/>
-          </button>
-         
-        </div>
-      </form>
-    </>
+    <form onSubmit={handleSubmit}>
+      <div className="flex mb-4">
+        <input
+          type="text"
+          value={inputValue}
+          onChange={handleChange}
+          placeholder="Enter task"
+          className="NewTask-input"
+        />
+        <button type="submit" className="NewTask-Add-btn">
+          <FaPlus />
+        </button>
+      </div>
+    </form>
   );
 };
 

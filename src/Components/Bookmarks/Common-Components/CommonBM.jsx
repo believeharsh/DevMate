@@ -3,7 +3,7 @@ import "./Bookmarks.css"; // Import the CSS file
 
 const CommonBM = ({ BM }) => {
   // Construct the favicon URL
-  // const faviconUrl = `https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=${BM.url}`;
+
   const faviconUrl = `https://www.google.com/s2/favicons?domain=${BM.url}`;
 
 

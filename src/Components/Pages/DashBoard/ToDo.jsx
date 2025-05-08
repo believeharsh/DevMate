@@ -1,47 +1,47 @@
 import React, { useState } from "react";
-import { useTodayTask } from "../../../Context/Todo-Context/TodayTasks/TodayTaskProvider";
+import { useTodo } from "../../../Context/Todo-Context/ToDoContext";
 import { MdDone } from "react-icons/md";
 
 const ToDo = () => {
-  const { Tasks, toggleTaskCompletion } = useTodayTask();
+  const { todos, toggleTaskCompletion } = useTodo();
   const [pendingCompletion, setPendingCompletion] = useState({});
-  
+
+  // Filter only today's tasks
+  const todayTasks = (todos || []).filter(task => task.type === "today" );
+  console.log(todayTasks)
   const handleTaskClick = (taskId) => {
-    // if the task is already pending completion
     if (pendingCompletion[taskId]) {
-      // User clicked again, cancel the pending completion
-      clearTimeout(pendingCompletion[taskId].timeoutId); 
+      // Cancel the pending completion
+      clearTimeout(pendingCompletion[taskId].timeoutId);
       setPendingCompletion((prev) => {
         const updated = { ...prev };
         delete updated[taskId];
         return updated;
       });
     } else {
-      // Mark the task for completion after delay
+      // Schedule completion
       const timeoutId = setTimeout(() => {
-        toggleTaskCompletion(taskId);
+        toggleTaskCompletion(taskId, false);
         setPendingCompletion((prev) => {
           const updated = { ...prev };
           delete updated[taskId];
           return updated;
         });
-      }, 120000); 
+      }, 120000); // 2 minutes
 
       setPendingCompletion((prev) => ({
         ...prev,
         [taskId]: { timeoutId },
-        
       }));
     }
   };
 
   return (
     <div className="flex justify-center items-center gap-2 flex-wrap text-white">
-      {Tasks.map((task) => {
-        const isTaskCompleted = task.completed;
+      {todayTasks.map((task) => {
         const isPending = !!pendingCompletion[task.id];
 
-        return !isTaskCompleted ? (
+        return (
           <div
             key={task.id}
             className="flex justify-between p-2 border-[1px] border-white rounded-md w-full"
@@ -57,7 +57,7 @@ const ToDo = () => {
               <MdDone onClick={() => handleTaskClick(task.id)} />
             </p>
           </div>
-        ) : null;
+        );
       })}
     </div>
   );

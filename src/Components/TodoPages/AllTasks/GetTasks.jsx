@@ -1,33 +1,19 @@
 import React from "react";
 import { Navigate, Outlet, useLocation } from "react-router-dom";
-import {Header, Navbar, AddNewTask} from "../../index.js"
-import { useTodayTask } from "../../../Context/Todo-Context/TodayTasks/TodayTaskProvider";
-import { useMissingTask } from "../../../Context/Todo-Context/MissingTasks/MissingTaskProvider";
-import { useImpTask } from "../../../Context/Todo-Context/ImportantTasks/ImpTaskProvider";
-import "./AllTasks.css"
+import { Header, Navbar, AddNewTask } from "../../index.js";
+import { useTodo } from "../../../Context/Todo-Context/ToDoContext.jsx"
+import "./AllTasks.css";
 
 const GetTasks = () => {
   const location = useLocation();
-  const { handleAddTask: handleAddTodayTask } = useTodayTask();
-  const { handleAddTask: handleAddImportantTask } = useImpTask();
-  const { handleAddTask: handleAddMissingTask } = useMissingTask();
+  const { addTodo } = useTodo(); 
+  const path = location.pathname.split("/").pop(); // today, missing, important
 
-  const path = location.pathname.split("/").pop();
-  const getAddTaskFunction = () => {
-    switch (path) {
-      case "important":
-        return handleAddImportantTask;
-      case "missing":
-        return handleAddMissingTask;
-      case "today":
-      default:
-        return handleAddTodayTask;
-    }
-  };
-
+  // Redirect base /tasks route
   if (location.pathname === "/tasks") {
     return <Navigate to="/tasks/today" />;
   }
+
 
   return (
     <div className="left-0 right-0 bottom-0 top-0 overflow-auto">
@@ -36,7 +22,7 @@ const GetTasks = () => {
         <div className="everything-card border-1 rounded-xl p-5">
           <Header />
 
-          <AddNewTask handleAddTask={getAddTaskFunction()} />
+          <AddNewTask type={path} handleAddTask={addTodo} />
 
           <Outlet />
         </div>

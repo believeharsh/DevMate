@@ -1,18 +1,15 @@
 import React from "react";
-import {TaskList} from "../../index.js"
-import {useMissingTask} from  "../../../Context/Todo-Context/MissingTasks/MissingTaskProvider"
+import { TaskList } from "../../index.js";
+import { useTodo } from "../../../Context/Todo-Context/ToDoContext.jsx"
 
 const MissingTasklist = () => {
-  const { Tasks, handleEditTask, handledeleteTask, toggleTaskCompletion } = useMissingTask();
+  const { todos } = useTodo();
 
-  return (
-    <TaskList
-      tasks={Tasks}
-      handleEditTask={handleEditTask}
-      handleDeleteTask={handledeleteTask}
-      toggleTaskCompletion={toggleTaskCompletion}
-    />
-  );
+  // Filter only important tasks
+  const missingTasks = (todos || []).filter(task => task.type === "missing" );
+
+
+  return <TaskList tasks={missingTasks} />;
 };
 
 export default MissingTasklist;

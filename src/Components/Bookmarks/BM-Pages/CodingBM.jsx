@@ -1,22 +1,9 @@
 import React from "react";
-import {BmList} from "../../index" ; 
-import '../Common-Components/Bookmarks.css'; 
-import { UseCodingBM } from "../../../Context/BookMark-Context/Coding-Context/CodingContext-Provider";
+import "../Common-Components/Bookmarks.css";
+import { BmList } from "../../index";
 
-const CodingBMs = () => {
-  const { handleAddBM, handleDeleteBM, handleEditBM, BookMark } = UseCodingBM();
-  return (
-    <div className="">
-    <div>
-      <BmList
-        handleAddBM={handleAddBM}
-        BookMark={BookMark}
-        handleDeleteBM={handleDeleteBM}
-        handleEditBM={handleEditBM}
-      />
-    </div>
-  </div>
-  );
+const CodingBM = () => {
+  return <BmList category="coding" />;
 };
 
-export default CodingBMs ; 
+export default CodingBM;
