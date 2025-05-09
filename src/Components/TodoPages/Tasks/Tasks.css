@@ -16,24 +16,6 @@
       0 0 10px rgba(0, 0, 0, 0.5), 0 0 10px rgba(0, 0, 0, 0.5);
   }
   
-  /* .everything-card{
-     background: transparent;
-     border: white 1px solid;
-     border-radius: 10px;
-     box-shadow: 
-     0 0 10px rgba(0, 0, 0, 0.5),
-     0 0 10px rgba(0, 0, 0, 0.5),
-     0 0 10px rgba(0, 0, 0, 0.5),
-     0 0 10px rgba(0, 0, 0, 0.5);
-     color: white ; 
-  }
-  
-  .everything-card:hover {
-      transform: translateY(-2px);
-      transition: transform 0.2s ease-in-out;
-      background: var(--primary);
-      box-shadow: 0 0 11px grey; 
-  } */
   
   .NewTask-input {
     @apply bg-gray-800 border border-gray-300 text-white text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 outline-none;
@@ -56,10 +38,40 @@
   }
   
   .threedot-panel {
-    @apply absolute flex justify-center items-center right-0 mt-2 bg-black text-white font-thin shadow-lg rounded-md text-sm z-10 px-2 py-2 border-white border-[1px] transition-transform duration-200;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: #2d2d2d; /* Dark background for the panel */
+    border-radius: 6px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    width: 140px; /* Set a width so buttons don't stretch */
+    padding: 8px 0;
+    z-index: 10;
   }
   
   .threedot-panel-btns {
-    @apply block px-1 py-1;
+    display: flex;
+    align-items: center;
+    padding: 8px;
+    background-color: transparent;
+    color: #fff;
+    width: 100%;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+  
+  .threedot-panel-btns:hover {
+    background-color: #444; /* Slight hover effect */
+  }
+  
+  .threedot-panel-btns span {
+    margin-left: 8px;
+    font-size: 14px;
+    font-weight: normal;
+  }
+  
+  .threedot-panel-btns:active {
+    background-color: #333; /* Active state */
   }
   

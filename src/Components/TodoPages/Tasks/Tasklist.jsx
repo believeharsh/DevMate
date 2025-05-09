@@ -1,18 +1,17 @@
 import React, { useState, useRef, useEffect } from "react";
 import { MdDeleteOutline } from "react-icons/md";
-import { CiEdit, CiMedicalCross } from "react-icons/ci";
+import { CiEdit } from "react-icons/ci";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import "./Tasks.css";
 import { useTodo } from "../../../Context/Todo-Context/ToDoContext";
 
 const TaskList = ({ tasks }) => {
-  const { editTodo , toggleTaskCompletion, deleteTodo} = useTodo();
+  const { editTodo, toggleTaskCompletion, deleteTodo } = useTodo();
   const [editTaskId, setEditTaskId] = useState(null);
   const [editedTaskText, setEditedTaskText] = useState("");
   const [panelOpenId, setPanelOpenId] = useState(null);
   const panelRefs = useRef({});
   const buttonRefs = useRef({});
-
 
   const handleEditInputChange = (e) => {
     setEditedTaskText(e.target.value);
@@ -77,32 +76,36 @@ const TaskList = ({ tasks }) => {
           return (
             <li
               key={task.id}
-              className={`Tasklist-li ${task.completed ? "bg-gray-200" : ""}`}
+              className={`Tasklist-li cursor-pointer font-sans text-xl ${task.completed ? "line-through text-gray-500" : ""
+                }`}
             >
-              <div className="flex justify-between">
-                {isEditing ? (
-                  <div className="flex w-full">
-                    <input
-                      type="text"
-                      value={editedTaskText}
-                      onChange={handleEditInputChange}
-                      onKeyDown={(event) => handleKeyPress(event, task.id)}
-                      className="Task-input"
-                    />
-                    <button onClick={() => handleEditSubmit(task.id)}>
-                      Save
-                    </button>
-                  </div>
-                ) : (
-                  <span
-                    className={`cursor-pointer font-sans text-xl ${
-                      task.completed ? "line-through text-gray-500" : ""
-                    } line-clamp-2`}
-                    onClick={() => toggleTaskCompletion(task.id, task.completed)}
-                  >
-                    {task.text}
-                  </span>
-                )}
+              <div className="flex justify-between items-center">
+                <div className="flex items-center gap-2 w-full">
+                  <input
+                    type="checkbox"
+                    className="cursor-pointer "
+                    checked={task.completed}
+                    onChange={() =>
+                      toggleTaskCompletion(task.id, task.completed)
+                    }
+                  />
+                  {isEditing ? (
+                    <div className="flex w-full">
+                      <input
+                        type="text"
+                        value={editedTaskText}
+                        onChange={handleEditInputChange}
+                        onKeyDown={(event) => handleKeyPress(event, task.id)}
+                        className="Task-input"
+                      />
+                      <button onClick={() => handleEditSubmit(task.id)}>
+                        Save
+                      </button>
+                    </div>
+                  ) : (
+                    <span className="line-clamp-2">{task.text}</span>
+                  )}
+                </div>
 
                 <div className="relative">
                   {!isEditing && (
@@ -123,19 +126,15 @@ const TaskList = ({ tasks }) => {
                             className="threedot-panel-btns"
                             onClick={() => openEditPanel(task.id)}
                           >
-                            <CiEdit />
-                          </button>
-                          <button
-                            className="threedot-panel-btns"
-                            onClick={() => toggleTaskCompletion(task.id, task.completed)}
-                          >
-                            <CiMedicalCross />
+                            <CiEdit className="text-xl" />
+                            <span className="ml-2 text-sm">Edit</span>
                           </button>
                           <button
                             className="threedot-panel-btns"
                             onClick={() => deleteTodo(task.id)}
                           >
-                            <MdDeleteOutline />
+                            <MdDeleteOutline className="text-xl" />
+                            <span className="ml-2 text-sm">Delete</span>
                           </button>
                         </div>
                       )}

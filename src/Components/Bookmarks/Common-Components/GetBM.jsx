@@ -1,11 +1,21 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { AddnewBM } from "../../index.js";
 import "../Common-Components/Bookmarks.css";
 import { Navigate, Outlet, useLocation } from "react-router-dom";
 import Navigation from "./Navigation";
 import { useBookmarks } from "../../../Context/BookMark-Context/BookMarkContext.jsx";
+import { useAuth } from "../../../Context/Auth/AuthContext.jsx";
+import { logUserActivity } from "../../../utils/logActivity.js";
 
 const GetBM = () => {
+    const { currentUser } = useAuth();
+  
+    useEffect(() => {
+      if (currentUser?.uid) {
+        logUserActivity(currentUser.uid, "view_dashboard");
+      }
+    }, [currentUser]);
+
   const {addBookmark} = useBookmarks() ; 
   const location = useLocation();
   const path = location.pathname.split("/").pop().toLowerCase(); // e.g., "codingbm"

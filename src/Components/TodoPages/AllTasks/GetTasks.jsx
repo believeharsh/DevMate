@@ -1,12 +1,21 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Navigate, Outlet, useLocation } from "react-router-dom";
 import {  Navbar, AddNewTask } from "../../index.js";
-
 import { useTodo } from "../../../Context/Todo-Context/ToDoContext.jsx"
 import "./AllTasks.css";
 import ToDoHeader from "../Header/ToDoHeader.jsx";
+import { useAuth } from "../../../Context/Auth/AuthContext.jsx";
+import { logUserActivity } from "../../../utils/logActivity.js";
 
 const GetTasks = () => {
+    const { currentUser } = useAuth();
+  
+    useEffect(() => {
+      if (currentUser?.uid) {
+        logUserActivity(currentUser.uid, "view_dashboard");
+      }
+    }, [currentUser]);
+
   const location = useLocation();
   const { addTodo } = useTodo(); 
   const path = location.pathname.split("/").pop(); // today, missing, important
