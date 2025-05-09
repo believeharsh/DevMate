@@ -30,7 +30,7 @@
 
 /* Add button */
 .AddnewBM-add-button {
-  @apply w-full px-4 py-2 bg-gray-500 text-white rounded-md shadow hover:bg-blue-600 flex items-center justify-center;
+  @apply p-4 bg-gray-500 text-white shadow hover:bg-blue-600 flex items-center justify-center rounded-full
 }
 
 /**************************************************************************************/
@@ -42,7 +42,7 @@
 
 /* Wrapper for centering content */
 .AllBMs-wrapper {
-  @apply max-w-3xl mx-auto p-4;
+  @apply max-w-5xl mx-auto p-4;
 }
 
 /* Card style for containing everything */

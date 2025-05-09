@@ -27,7 +27,7 @@ const ToDo = () => {
           delete updated[taskId];
           return updated;
         });
-      }, 120000); // 2 minutes
+      }, 1200); // 2 minutes
 
       setPendingCompletion((prev) => ({
         ...prev,

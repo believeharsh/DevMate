@@ -1,17 +1,30 @@
 import { signOut } from "firebase/auth";
 import { auth } from "../../../firebase-config";
+import { useState } from "react";
+import Spinner from "../../General/Spinner";
 
 function Logout() {
+  const [loading, setLoading] = useState(false);
   const handleLogout = async () => {
+    setLoading(true);
     try {
       await signOut(auth);
-      alert("Logged out!");
     } catch (err) {
       alert(err.message);
+      setLoading(false);
     }
   };
 
-  return <button onClick={handleLogout}>Log Out</button>;
+  return (
+    <div className="">
+      {
+        loading ? <Spinner />
+          :
+          <button className=" w-full px-6 py-2" onClick={handleLogout}> Log Out</button>
+      }
+    </div>
+
+  )
 }
 
 export default Logout;

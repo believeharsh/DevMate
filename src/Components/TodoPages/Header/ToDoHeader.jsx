@@ -2,8 +2,8 @@ import React, { useEffect } from "react";
 import { useState } from "react";
 import { useLocation } from "react-router-dom";
 
-const Header = () => {
-  const [tasktype, settasktype] = useState("");
+const ToDoHeader = () => {
+  const [tasktype, settasktype] = useState("Harsh Dahiya");
   const InitalDate = new Date();
   let CurrentDate = {
     date: InitalDate.getDate(),
@@ -37,4 +37,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default ToDoHeader;

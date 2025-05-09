@@ -2,25 +2,31 @@ import { useState } from "react";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { auth } from "../../../firebase-config";
+import Spinner from "../../General/Spinner";
+
 
 function Login() {
   const [email, setEmail] = useState("");
+  const [loading, setLoading] = useState(false);
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
   const handleLogin = async (e) => {
+    setLoading(true) ; 
     e.preventDefault();
     try {
       await signInWithEmailAndPassword(auth, email, password);
-      alert("Logged in!");
       navigate("/"); // Redirect to dashboard
+      setLoading(false) ; 
     } catch (err) {
       alert(err.message);
+      setLoading(false) ; 
     }
   };
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-900 text-white">
+    {loading ? <Spinner/> : 
       <form
         onSubmit={handleLogin}
         className="bg-gray-800 p-8 rounded-xl shadow-lg w-full max-w-md space-y-6"
@@ -56,6 +62,7 @@ function Login() {
           Don't have an account? <a href="/signup" className="text-blue-400 hover:underline">Sign Up</a>
         </p>
       </form>
+    }
     </div>
   );
 }

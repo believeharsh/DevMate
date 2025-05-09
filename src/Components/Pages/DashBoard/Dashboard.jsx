@@ -22,7 +22,7 @@ const DashBoard = () => {
           </div>
           <div className="bg-neutral-800 w-full h-[55%] p-2 rounded-lg shadow-md">
             <h3 className="text-xl font-sans mb-2">Tracker</h3>
-            <Watch/>
+            {/* <Watch/> */}
             </div>
         </div>
 
