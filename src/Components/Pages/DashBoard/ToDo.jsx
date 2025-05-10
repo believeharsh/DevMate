@@ -1,12 +1,17 @@
 import React from "react";
 import { useTodo } from "../../../Context/Todo-Context/ToDoContext";
 import { MdDone } from "react-icons/md";
+import { useAuth } from "../../../Context/Auth/AuthContext";
+import { Demotodos } from "../../../utils/DemoUserData";
 
 const ToDo = () => {
   const { todos, toggleTaskCompletion } = useTodo();
+  const {currentUser} = useAuth() ; 
+
+
 
   // Filter only today's tasks
-  const todayTasks = (todos || []).filter(task => task.type === "today");
+  const todayTasks = currentUser ? (todos || []).filter(task => task.type === "today") : Demotodos
 
  
 

@@ -1,11 +1,14 @@
 import React from "react";
 import { useBookmarks } from "../../../Context/BookMark-Context/BookMarkContext";
+import { useAuth } from "../../../Context/Auth/AuthContext";
+import { DemoBookMarks } from "../../../utils/DemoUserData";
 
 const BookMark = () => {
+  const {currentUser} = useAuth() ; 
   const { bookmarks } = useBookmarks();
 
   // Filter only "coding" bookmarks (or whatever category you want for the dashboard)
-  const codingBookmarks = bookmarks.filter((bm) => bm.category === "coding");
+  const codingBookmarks = currentUser ? bookmarks.filter((bm) => bm.category === "coding") : DemoBookMarks
 
   return (
     <div className="flex justify-center items-center flex-wrap p-2 gap-1">

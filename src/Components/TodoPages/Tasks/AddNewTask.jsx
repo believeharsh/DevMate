@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import { FaPlus } from "react-icons/fa";
-import { useTodo } from "../../../Context/Todo-Context/ToDoContext"; 
+import { useTodo } from "../../../Context/Todo-Context/ToDoContext";
 import "./Tasks.css";
+
 
 const AddNewTask = ({ type, handleAddTask }) => {
   const [inputValue, setInputValue] = useState("");
-  const { addTodo } = useTodo(); 
-
+  const { addTodo } = useTodo();
+ 
   const handleChange = (e) => {
     setInputValue(e.target.value);
   };
@@ -15,7 +16,7 @@ const AddNewTask = ({ type, handleAddTask }) => {
     e.preventDefault();
     if (!inputValue.trim()) return;
 
-    handleAddTask({ text: inputValue, type, completed: false }); 
+    addTodo({ text: inputValue, type, completed: false });
     setInputValue("");
   };
 

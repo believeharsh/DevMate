@@ -3,13 +3,18 @@ import { BsThreeDotsVertical } from "react-icons/bs";
 import { CommonBM, EditBookmark, EditingPannel } from "../../index";
 import { useBookmarks } from "../../../Context/BookMark-Context/BookMarkContext";
 import "../../Bookmarks/Common-Components/Bookmarks.css";
+import { useAuth } from "../../../Context/Auth/AuthContext";
+import { DemoBookMarks } from "../../../utils/DemoUserData";
+
 
 const Bmlist = ({ category }) => {
+  const {currentUser} = useAuth() ; 
   const [editBM, setEditBM] = useState(null);
   const [panelOpenId, setPanelOpenId] = useState(null);
   const { bookmarks, updateBookmark, deleteBookmark } = useBookmarks();
   // Filter bookmarks by category
-  const filteredBookmarks = bookmarks.filter((BM) => BM.category === category);
+  const filteredBookmarks = currentUser ? bookmarks.filter((BM) => BM.category === category) : DemoBookMarks
+
 
   const panelRef = useRef({});
   const buttonRef = useRef({});

@@ -4,9 +4,10 @@ import { db } from "../../../firebase-config"; // your Firebase config
 import { doc, setDoc, getDoc } from "firebase/firestore";
 import { useAuth } from "../../../Context/Auth/AuthContext";
 import { format } from "date-fns";
+import withAuth from "../../../utils/HelperWithAuth";
 const DailyFocus = () => {
-    const { currentUser } = useAuth();
-    const [goal, setGoal] = useState("");
+    const { currentUser, openPrompt } = useAuth();
+    const [goal, setGoal] = useState("Welcome in Devtime-Companion");
     const [completed, setCompleted] = useState(false);
     const [isEditing, setIsEditing] = useState(false);
     const today = format(new Date(), "yyyy-MM-dd");
@@ -18,6 +19,7 @@ const DailyFocus = () => {
             const docSnap = await getDoc(docRef);
             if (docSnap.exists()) {
                 const data = docSnap.data();
+
                 setGoal(data.goal);
                 setCompleted(data.completed);
             }
@@ -25,7 +27,7 @@ const DailyFocus = () => {
         if (currentUser) fetchGoal();
     }, [currentUser]);
 
-    const saveGoal = async () => {
+    const saveGoal = withAuth(currentUser, async () => {
         await setDoc(docRef, {
             uid: currentUser.uid,
             date: today,
@@ -33,9 +35,9 @@ const DailyFocus = () => {
             completed: false,
         });
         setIsEditing(false);
-    };
+    }, openPrompt)
 
-    const toggleComplete = async () => {
+    const toggleComplete = withAuth(currentUser, async () => {
         await setDoc(docRef, {
             uid: currentUser.uid,
             date: today,
@@ -43,7 +45,7 @@ const DailyFocus = () => {
             completed: !completed,
         });
         setCompleted(!completed);
-    };
+    }, openPrompt)
 
     return (
         <>

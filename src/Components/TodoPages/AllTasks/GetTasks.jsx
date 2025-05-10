@@ -17,7 +17,6 @@ const GetTasks = () => {
     }, [currentUser]);
 
   const location = useLocation();
-  const { addTodo } = useTodo(); 
   const path = location.pathname.split("/").pop(); // today, missing, important
 
   // Redirect base /tasks route
@@ -33,7 +32,7 @@ const GetTasks = () => {
         <div className="everything-card border-1 rounded-xl p-5">
           <ToDoHeader />
 
-          <AddNewTask type={path} handleAddTask={addTodo} />
+          <AddNewTask type={path}/>
 
           <Outlet />
         </div>

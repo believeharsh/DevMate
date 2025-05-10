@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import Logout from "../Auth/Logout";
+import Signup from "../Auth/Signup"
 import { useAuth } from "../../../Context/Auth/AuthContext";
 
 const Sidebar = () => {
@@ -15,7 +16,7 @@ const Sidebar = () => {
             alt="Profile"
             className="rounded-full w-24 h-24 object-cover border-2 border-white"
           />
-          <h2 className="text-sm mt-3 text-gray-300">{currentUser.email}</h2>
+          <h2 className="text-sm mt-3 text-gray-300">{currentUser ? currentUser.email : "Guest User"}</h2>
         </div>
 
         {/* Navigation */}
@@ -40,9 +41,20 @@ const Sidebar = () => {
               Settings
             </li>
           </Link>
-          <li className="hover:bg-gray-700 transition duration-200 px-4 py-2 rounded-lg cursor-pointer">
-            <Logout />
-          </li>
+          {
+            currentUser ? (
+              <li className="hover:bg-gray-700 transition duration-200 px-4 py-2 rounded-lg cursor-pointer">
+                <Logout />
+              </li>
+            ) : (
+              <Link to={"signup"}>
+                <li className="hover:bg-gray-700 transition duration-200 px-4 py-2 rounded-lg cursor-pointer">
+                  Signup
+                </li>
+              </Link>
+            )
+          }
+
         </ul>
 
         {/* Footer */}
