@@ -2,7 +2,7 @@ import { useState } from "react";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { auth } from "../../../firebase-config";
-import Spinner from "../../General/Spinner.jsx"; // Adjust path as needed
+import Spinner from "../../General/Spinner.jsx"; // Adjust path if needed
 
 function Signup() {
   const [email, setEmail] = useState("");
@@ -12,26 +12,34 @@ function Signup() {
 
   const handleSignup = async (e) => {
     e.preventDefault();
-    setLoading(true); // Start spinner
+    setLoading(true);
 
     try {
       await createUserWithEmailAndPassword(auth, email, password);
-      navigate("/"); // Redirect after successful signup
+      navigate("/");
     } catch (err) {
       alert(err.message);
     } finally {
-      setLoading(false); // Stop spinner
+      setLoading(false);
     }
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-900 text-white">
-      {loading ? (
-        <Spinner />
-      ) : (
+    <div className="min-h-screen flex items-center justify-center bg-gray-900 text-white px-4">
+      <div className="w-full max-w-md space-y-6">
+        {/* Logo and Tagline */}
+        <div className="text-center space-y-2">
+          <div className="text-4xl font-extrabold text-blue-500">🧠</div>
+          <h1 className="text-3xl font-bold">Devetime Companion</h1>
+          <p className="text-gray-400 text-sm">
+            Your personal productivity dashboard
+          </p>
+        </div>
+
+        {/* Signup Form */}
         <form
           onSubmit={handleSignup}
-          className="bg-gray-800 p-8 rounded-xl shadow-lg w-full max-w-md space-y-6"
+          className="bg-gray-800 p-8 rounded-xl shadow-lg space-y-6"
         >
           <h2 className="text-2xl font-bold text-center">Create Your Account</h2>
 
@@ -55,9 +63,17 @@ function Signup() {
 
           <button
             type="submit"
-            className="w-full py-2 bg-blue-600 hover:bg-blue-700 rounded-lg font-semibold transition"
+            disabled={loading}
+            className="w-full py-2 bg-blue-600 hover:bg-blue-700 rounded-lg font-semibold transition flex items-center justify-center"
           >
-            Sign Up
+            {loading ? (
+              <div className="flex items-center space-x-2">
+                <Spinner size="sm" />
+                <span>Signing up...</span>
+              </div>
+            ) : (
+              "Sign Up"
+            )}
           </button>
 
           <p className="text-sm text-center text-gray-400">
@@ -65,7 +81,7 @@ function Signup() {
             <a href="/login" className="text-blue-400 hover:underline">Login</a>
           </p>
         </form>
-      )}
+      </div>
     </div>
   );
 }
