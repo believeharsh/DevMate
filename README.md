@@ -70,7 +70,7 @@ npm install
 npm run dev
 ```
 
-🚀 Usage
+## 🚀 Usage
 ➕ Adding a Bookmark
 Go to the Bookmarks page
 
@@ -98,7 +98,7 @@ Check activity metrics and completion stats
 
 Use visual charts to understand productivity trends
 
-🛠️ Tech Stack
+## 🛠️ Tech Stack
 Frontend: React, Tailwind CSS
 
 State Management: Redux Toolkit
@@ -111,16 +111,14 @@ Hosting: Firebase Hosting
 
 Charts: Recharts
 
-📸 Screenshots
+## 📸 Screenshots
 You can include screenshots or GIFs of the Dashboard, Todos page, and Bookmarks page to showcase features visually.
 (e.g., /assets/screenshots/dashboard.png)
 
-👥 Contributing
+## 👥 Contributing
 Contributions are welcome! Please feel free to fork and submit a Pull Request.
 
-bash
-Copy
-Edit
+
 # Fork the repository
 # Create your feature branch
 git checkout -b feature/amazing-feature
@@ -135,6 +133,7 @@ git push origin feature/amazing-feature
 📄 License
 This project is licensed under the MIT License – see the LICENSE file for details.
 
-📞 Contact
+## 📞 Contact
 Harsh – onlybelieveharsh@gmail.com
+
 Project Link: https://github.com/yourusername/devtime-companion
