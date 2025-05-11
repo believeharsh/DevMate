@@ -115,6 +115,24 @@ Charts: Recharts
 You can include screenshots or GIFs of the Dashboard, Todos page, and Bookmarks page to showcase features visually.
 (e.g., /assets/screenshots/dashboard.png)
 
+##  🔗 Bookmarks Page 
+![Bookmarks Page](public/ScreenShots/Devmate-BookmarkPage.png)
+
+### ✅ Todos Page
+![Todos Page](public/ScreenShots/Devmate-TasksPage.png)
+
+### 📊 Dashboard View
+![Dashboard](public/ScreenShots/Devmate-Dashboard.png)
+
+### 🛠️ Settings Page 
+![Settings](public/ScreenShots/Devmate-SettingsPage.png)
+
+### 👩🏻‍🎤 Login Page
+![Login](public/ScreenShots/Devmate-LoginPage.png)
+
+### 👩🏻‍🎤 Signup Page
+![Signup](public/ScreenShots/Devmate-SignupPage.png)
+
 ## 👥 Contributing
 Contributions are welcome! Please feel free to fork and submit a Pull Request.
 
