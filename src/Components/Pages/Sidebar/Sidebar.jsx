@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import Logout from "../Auth/Logout";
-import Signup from "../Auth/Signup"
 import { useAuth } from "../../../Context/Auth/AuthContext";
 
 const Sidebar = () => {
@@ -12,7 +11,7 @@ const Sidebar = () => {
         {/* Profile Section */}
         <div className="flex flex-col items-center">
           <img
-            src="/Images/fevIcon.png"
+            src="/favicon.ico"
             alt="Profile"
             className="rounded-full w-24 h-24 object-cover border-2 border-white"
           />
