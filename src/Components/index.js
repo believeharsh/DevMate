@@ -8,8 +8,6 @@ export {default as TodayTasklist} from "./TodoPages/Tasks/TodayTasklist.jsx"
 
 export {default as MissingTasklist} from "./TodoPages/Tasks/Missingtask.jsx" 
 export {default as ImpTasklist} from "./TodoPages/Tasks/ImportantTasks.jsx" 
-export {default as Watch} from "./DigitalWatch/Watch.jsx" 
-export {default as Reminder} from "./Reminders/Remider.jsx" 
 export {default as Settings} from "./Settings/Settings.jsx" 
 export {default as AppContainer} from "./Pages/AppContainer/AppContainer.jsx"
 export {default as DashBoard} from "./Pages/DashBoard/Dashboard.jsx"

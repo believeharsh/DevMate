@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Suspense } from "react";
-import { Spinner, GetTasks, GetBM, SocialBM, CodingBM, ToolsBM, TodayTasklist, MissingTasklist, ImpTasklist, Watch, Reminder, Settings, AppContainer, DashBoard, Login, Signup } from "./Components/index.js";
+import { Spinner, GetTasks, GetBM, SocialBM, CodingBM, ToolsBM, TodayTasklist, MissingTasklist, ImpTasklist,  Settings, AppContainer, DashBoard, Login, Signup } from "./Components/index.js";
 import { BookmarksProvider } from "./Context/BookMark-Context/BookMarkContext.jsx";
 import TodoContextProvider from "./Context/Todo-Context/ToDoContext.jsx";
 import AuthPromptModal from "./Components/General/AuthPromptModal.jsx"
@@ -25,8 +25,6 @@ function AppContent() {
               <Route path="socialbm" element={<SocialBM />} />
               <Route path="toolsbm" element={<ToolsBM />} />
             </Route>
-            <Route path="reminder" element={<Reminder />} />
-            <Route path="watch" element={<Watch />} />
             <Route path="settings" element={<Settings />} />
           </Route>
 
