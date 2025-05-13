@@ -1,4 +1,4 @@
-# Devetime Companion
+# DevMate
 
 A productivity hub tailored for developers—organize bookmarks, manage todos, and track your productivity with an interactive dashboard—all in one centralized platform.
 
@@ -58,10 +58,10 @@ A productivity hub tailored for developers—organize bookmarks, manage todos, a
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/DevMate.git
+git clone https://github.com/yourusername/devtime-companion.git
 
 # Navigate to the project directory
-cd DevMate
+cd devtime-companion
 
 # Install dependencies
 npm install
@@ -154,4 +154,4 @@ This project is licensed under the MIT License – see the LICENSE file for deta
 ## 📞 Contact
 Harsh – onlybelieveharsh@gmail.com
 
-Project Link: https://github.com/yourusername/DevMate
+Project Link: https://github.com/yourusername/devtime-companion
