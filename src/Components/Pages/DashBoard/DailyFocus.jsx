@@ -7,7 +7,7 @@ import { format } from "date-fns";
 import withAuth from "../../../utils/HelperWithAuth";
 const DailyFocus = () => {
     const { currentUser, openPrompt } = useAuth();
-    const [goal, setGoal] = useState("Welcome in Devtime-Companion");
+    const [goal, setGoal] = useState("Welcome in DevMate");
     const [completed, setCompleted] = useState(false);
     const [isEditing, setIsEditing] = useState(false);
     const today = format(new Date(), "yyyy-MM-dd");
