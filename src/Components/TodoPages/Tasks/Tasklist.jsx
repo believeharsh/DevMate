@@ -4,6 +4,7 @@ import { CiEdit } from "react-icons/ci";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import "./Tasks.css";
 import { useTodo } from "../../../Context/Todo-Context/ToDoContext";
+import {motion} from "framer-motion";
 
 const TaskList = ({ tasks }) => {
   const { editTodo, toggleTaskCompletion, deleteTodo } = useTodo();
@@ -67,7 +68,13 @@ const TaskList = ({ tasks }) => {
   }, [panelOpenId]);
 
   return (
-    <div>
+    <motion.div
+          key={location.pathname} // to re-trigger on route change
+      initial={{ opacity: 0, y: 10 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -10 }}
+      transition={{ duration: 0.3 }}
+    >
       <ul>
         {tasks.map((task) => {
           const isEditing = task.id === editTaskId;
@@ -146,7 +153,7 @@ const TaskList = ({ tasks }) => {
           );
         })}
       </ul>
-    </div>
+    </motion.div>
   );
 };
 

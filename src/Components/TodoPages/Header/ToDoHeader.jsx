@@ -30,7 +30,7 @@ const ToDoHeader = () => {
   return (
     <>
       <div className="flex justify-between">
-        <div className="text-2xl  mb-4 text-white font-light">{tasktype}</div>
+        <div className="">{tasktype}</div>
         <div className="text-white ">{`${CurrentDate.date}-${CurrentDate.month}-${CurrentDate.year}`}</div>
       </div>
     </>

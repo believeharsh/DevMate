@@ -5,10 +5,10 @@ import { useBookmarks } from "../../../Context/BookMark-Context/BookMarkContext"
 import "../../Bookmarks/Common-Components/Bookmarks.css";
 import { useAuth } from "../../../Context/Auth/AuthContext";
 import { DemoBookMarks } from "../../../utils/DemoUserData";
-
+import { motion } from "framer-motion";
 
 const Bmlist = ({ category }) => {
-  const {currentUser} = useAuth() ; 
+  const { currentUser } = useAuth();
   const [editBM, setEditBM] = useState(null);
   const [panelOpenId, setPanelOpenId] = useState(null);
   const { bookmarks, updateBookmark, deleteBookmark } = useBookmarks();
@@ -35,7 +35,7 @@ const Bmlist = ({ category }) => {
 
   const handleEditSubmit = async (BmId, editedText, editedUrl) => {
     await updateBookmark(BmId, {
-      text: editedText, 
+      text: editedText,
       url: editedUrl,
     });
     setEditBM(null);
@@ -63,7 +63,13 @@ const Bmlist = ({ category }) => {
   }, [panelOpenId]);
 
   return (
-    <div className="BMlist-container">
+    <motion.div
+      key={location.pathname} // to re-trigger on route change
+      initial={{ opacity: 0, y: 10 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -10 }}
+      transition={{ duration: 0.3 }}
+      className="BMlist-container">
       {editBM ? (
         <EditBookmark
           BM={editBM}
@@ -103,7 +109,7 @@ const Bmlist = ({ category }) => {
           );
         })
       )}
-    </div>
+    </motion.div>
   );
 };
 

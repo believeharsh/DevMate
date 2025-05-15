@@ -46,21 +46,21 @@
 }
 
 /* Card style for containing everything */
-.everything-card {
+/* .everything-card {
   background: transparent;
   border: white 1px solid;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5), 0 0 10px rgba(0, 0, 0, 0.5),
     0 0 10px rgba(0, 0, 0, 0.5), 0 0 10px rgba(0, 0, 0, 0.5);
   color: white;
-}
+} */
 
-.everything-card:hover {
+/* .everything-card:hover {
   transform: translateY(-2px);
   transition: transform 0.2s ease-in-out;
   background: var(--primary);
   box-shadow: 0 0 11px grey;
-}
+} */
 
 /* Section containing AddnewBM component */
 .AllBMs-addnewbm-section {
@@ -75,15 +75,15 @@
 }
 
 .BMlist-bookmark-item {
-  @apply relative hover:border-[0.2px] hover:border-gray-100 rounded-xl;
+  @apply relative hover:border-[0.2px] hover:border-gray-100 rounded-xl px-2 py-1;
 }
 
 .BMlist-bookmark-content {
-  @apply flex items-center py-2 hover:rounded-xl justify-center px-4;
+  @apply flex items-center hover:rounded-xl justify-center ;
 }
 
 .BMlist-edit-button {
-  @apply absolute top-0 right-0 text-gray-500 hover:text-gray-700 focus:outline-none px-1 py-1 opacity-0 group-hover:opacity-100 transition-opacity duration-200;
+  @apply absolute top-0 right-0 text-gray-200 hover:text-gray-400 focus:outline-none px-1 py-1 opacity-0 group-hover:opacity-100 transition-opacity duration-200;
 }
 
 .BMlist-panel-open {
