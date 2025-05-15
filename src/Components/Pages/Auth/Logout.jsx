@@ -20,7 +20,7 @@ function Logout() {
       {
         loading ? <Spinner />
           :
-          <button className=" w-full px-6 py-2" onClick={handleLogout}> Log Out</button>
+          <button className=" w-full text-left" onClick={handleLogout}> Log Out</button>
       }
     </div>
 

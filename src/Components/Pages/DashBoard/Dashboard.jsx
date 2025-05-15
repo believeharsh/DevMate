@@ -1,9 +1,10 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import ToDo from "./ToDo";
 import BookMark from "./Bookmarks";
 import { IoUnlink } from "react-icons/io5";
 import { Link } from "react-router-dom";
 import UserActivityChart from "../../../Charts/UserActivityChart";
+import ChartsButtons from "../../../Charts/ChartsButtons" ; 
 import { useAuth } from "../../../Context/Auth/AuthContext";
 import { logUserActivity } from "../../../utils/logActivity";
 import DailyFocus from "./DailyFocus";
@@ -12,6 +13,7 @@ import DailyFocus from "./DailyFocus";
 
 const DashBoard = () => {
   const { currentUser } = useAuth();
+  const [chartType, setChartType] = useState("bar");
 
   useEffect(() => {
     if (currentUser?.uid) {
@@ -24,16 +26,17 @@ const DashBoard = () => {
       <div className="flex h-full space-x-2 overflow-y-auto overflow-x-hidden">
         <div className="w-[50%] flex flex-col space-y-2">
           <div className="bg-neutral-800 flex-1 p-4 rounded-lg shadow-md flex flex-col justify-between">
-            <div className="flex justify-between items-center mb-4">
+            <div className="flex justify-between items-center mb-2">
               <h3 className="text-xl font-semibold text-white">Activity</h3>
+              <ChartsButtons chartType={chartType} setChartType={setChartType} />
             </div>
-            <div className="flex-1 flex justify-center items-center">
-              <UserActivityChart />
+            <div className="flex justify-center items-center">
+              <UserActivityChart chartType={chartType} />
             </div>
           </div>
           <div className="bg-neutral-800 w-full h-[55%] p-2 rounded-lg shadow-md">
             <h3 className="text-xl font-sans mb-2">Tracker</h3>
-            <DailyFocus/>
+            <DailyFocus />
           </div>
         </div>
 
