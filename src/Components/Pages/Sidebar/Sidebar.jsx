@@ -23,6 +23,7 @@ const Sidebar = () => {
     { to: "/tasks", label: "Tasks", icon: <FaListUl /> },
     { to: "/bookmarks", label: "Bookmarks", icon: <FaBookmark /> },
     { to: "/settings", label: "Settings", icon: <FaCog /> },
+    { to: "/github/callback", label: "Github", icon: <FaGithub /> },
   ];
 
   return (

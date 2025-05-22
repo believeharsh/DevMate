@@ -6,6 +6,8 @@ import TodoContextProvider from "./Context/Todo-Context/ToDoContext.jsx";
 import AuthPromptModal from "./Components/General/AuthPromptModal.jsx"
 import { useAuth } from "./Context/Auth/AuthContext.jsx";
 import { AnimatePresence } from "framer-motion";
+import GitHubDashboard from "./Components/Pages/GithubDashboard/GitHubDashboard.jsx";
+import GitHubCallback from "./Components/Github/GitHubCallback.jsx";
 
 function AppContent() {
   const { isAuthPromptOpen, closePrompt } = useAuth();
@@ -29,6 +31,7 @@ function AppContent() {
                 <Route path="toolsbm" element={<ToolsBM />} />
               </Route>
               <Route path="settings" element={<Settings />} />
+              <Route path="github/callback" element={<GitHubCallback/>} />
             </Route>
 
             {/* Public Routes */}

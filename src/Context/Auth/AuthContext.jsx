@@ -21,9 +21,42 @@ export const AuthProvider = ({ children }) => {
     return unsubscribe; // Cleanup
   }, []);
 
+
+  // Add to your existing AuthContext
+const storeGitHubToken = async (token) => {
+  if (!currentUser) return;
+  
+  try {
+    await firebase.firestore()
+      .collection('users')
+      .doc(currentUser.uid)
+      .update({
+        githubToken: token
+      });
+  } catch (error) {
+    console.error('Error storing GitHub token:', error);
+  }
+};
+
+const getGitHubToken = async () => {
+  if (!currentUser) return null;
+  
+  try {
+    const doc = await firebase.firestore()
+      .collection('users')
+      .doc(currentUser.uid)
+      .get();
+      
+    return doc.data()?.githubToken || null;
+  } catch (error) {
+    console.error('Error getting GitHub token:', error);
+    return null;
+  }
+};
+
   return (
-    <AuthContext.Provider value={{ currentUser, isAuthPromptOpen, openPrompt, closePrompt }}>
-      {!loading && children} {/* 👈 Don’t render app until auth is checked */}
+    <AuthContext.Provider value={{ currentUser, isAuthPromptOpen, openPrompt, closePrompt, getGitHubToken, storeGitHubToken }}>
+      {!loading && children}
     </AuthContext.Provider>
   );
 };
