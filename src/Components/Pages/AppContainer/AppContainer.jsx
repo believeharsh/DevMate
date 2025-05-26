@@ -19,7 +19,7 @@ const AppContainer = () => {
       
       {/* Main Content Area with dynamic width */}
       <div 
-        className={`flex flex-col overflow-auto transition-all duration-300 ease-in-out ${
+        className={`flex flex-col overflow-auto transition-all duration-300 ease-in-out custom-scrollbar  ${
           isSidebarCollapsed 
             ? "ml-16 w-[calc(100%-4rem)]" // 4rem = 64px = w-16
             : "ml-64 w-[calc(100%-16rem)]" // 16rem = 256px = w-64

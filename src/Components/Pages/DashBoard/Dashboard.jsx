@@ -28,7 +28,7 @@ const DashBoard = () => {
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -20 }}
       transition={{ duration: 0.6 }}
-      className="flex flex-col lg:flex-row h-full space-y-4 lg:space-y-0 lg:space-x-4 overflow-y-auto overflow-x-hidden"
+      className="flex flex-col lg:flex-row h-full space-y-4 lg:space-y-0 lg:space-x-4 overflow-y-auto overflow-x-hidden custom-scrollbar"
     >
       {/* Left Column */}
       <div className="w-full lg:w-[50%] flex flex-col space-y-4">
@@ -40,10 +40,8 @@ const DashBoard = () => {
           className="bg-neutral-800 flex-1 p-4 rounded-2xl shadow-md bg-opacity-90 backdrop-blur-md transition hover:scale-[1.01]"
         >
           <div className="flex justify-between items-center mb-2">
-            <h3 className="text-xl font-semibold text-cyan-400">Activity</h3>
-            <ChartsButtons chartType={chartType} setChartType={setChartType} />
           </div>
-          <div className="flex justify-center items-center">
+          <div className="flex justify-center items-center card-scrollbar overflow-auto">
             <UserActivityChart chartType={chartType} />
           </div>
         </motion.div>
@@ -55,7 +53,7 @@ const DashBoard = () => {
           transition={{ duration: 0.4, delay: 0.05 }}
           className="bg-neutral-800 flex-1 p-4 rounded-2xl shadow-md bg-opacity-90 backdrop-blur-md transition hover:scale-[1.01]"
         >
-          <h3 className="text-xl font-semibold text-emerald-400 mb-2">Tracker</h3>
+          <h3 className="text-xl font-semibold text-cyan-400 mb-2">Tracker</h3>
           <DailyFocus />
         </motion.div>
       </div>
@@ -71,7 +69,7 @@ const DashBoard = () => {
             className="bg-neutral-800 flex-1 p-4 rounded-2xl shadow-md bg-opacity-90 backdrop-blur-md transition hover:scale-[1.01]"
           >
             <div className="flex justify-between items-center mb-2">
-              <h3 className="text-xl font-semibold text-yellow-400">Tasks</h3>
+              <h3 className="text-xl font-semibold text-cyan-400 mb-2">Tasks</h3>
               <Link to="/tasks/today">
                 <IoUnlink className="text-white text-2xl cursor-pointer hover:text-gray-300 transition-colors" />
               </Link>
@@ -87,7 +85,7 @@ const DashBoard = () => {
             className="bg-neutral-800 flex-1 p-4 rounded-2xl shadow-md bg-opacity-90 backdrop-blur-md transition hover:scale-[1.01]"
           >
             <div className="flex justify-between items-center mb-2">
-              <h3 className="text-xl font-semibold text-purple-400">Bookmarks</h3>
+              <h3 className="text-xl font-semibold text-cyan-400 mb-2">Bookmarks</h3>
               <Link to="/bookmarks/codingbm">
                 <IoUnlink className="text-white text-2xl cursor-pointer hover:text-gray-300 transition-colors" />
               </Link>
