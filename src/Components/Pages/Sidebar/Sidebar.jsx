@@ -39,10 +39,10 @@ const Sidebar = ({isCollapsed, toggleSidebar}) => {
       }`}
     >
       {/* Toggle Button */}
-      <div className="flex justify-end p-4">
+      <div className="flex justify-end p-4 ">
         <button
           onClick={toggleSidebar}
-          className="text-gray-300 hover:text-white transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-cyan-400 rounded"
+          className="text-gray-300 mt-2 hover:text-white transition-colors duration-200 focus:outline-none  rounded"
           aria-label={isCollapsed ? "Expand sidebar" : "Collapse sidebar"}
         >
           {isCollapsed ? <FaBars size={20} /> : <FaTimes size={20} />}
@@ -50,12 +50,12 @@ const Sidebar = ({isCollapsed, toggleSidebar}) => {
       </div>
 
       {/* Profile Section */}
-      <div className={`flex flex-col items-center gap-3 px-4 ${isCollapsed ? 'px-2' : 'px-4'}`}>
+      <div className={`flex flex-col items-center gap-3 px-4 ${isCollapsed ? 'px-2 py-2' : 'px-4'}`}>
         <img
-          src={currentUser?.profileImage || "/favicon.ico"}
+          src={currentUser?.profileImage || "/DevMate_Logo.png"}
           alt="Profile"
           className={`rounded-full object-cover border-2 border-white transition-all duration-300 ${
-            isCollapsed ? 'w-10 h-10' : 'w-20 h-20'
+            isCollapsed ? 'w-8 h-8' : 'w-20 h-20'
           }`}
           onError={(e) => {
             e.target.src = "/favicon.ico";
