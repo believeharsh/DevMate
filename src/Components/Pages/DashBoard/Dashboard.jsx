@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
+import { useOutletContext } from "react-router-dom";
 import ToDo from "./ToDo";
 import BookMark from "./Bookmarks";
 import { IoUnlink } from "react-icons/io5";
@@ -12,6 +13,7 @@ import DailyFocus from "./DailyFocus";
 
 const DashBoard = () => {
   const { currentUser } = useAuth();
+  const { isSidebarCollapsed } = useOutletContext(); // You can use this for any conditional logic if needed
   const [chartType, setChartType] = useState("bar");
 
   useEffect(() => {
@@ -71,7 +73,7 @@ const DashBoard = () => {
             <div className="flex justify-between items-center mb-2">
               <h3 className="text-xl font-semibold text-yellow-400">Tasks</h3>
               <Link to="/tasks/today">
-                <IoUnlink className="text-white text-2xl cursor-pointer" />
+                <IoUnlink className="text-white text-2xl cursor-pointer hover:text-gray-300 transition-colors" />
               </Link>
             </div>
             <ToDo />
@@ -87,7 +89,7 @@ const DashBoard = () => {
             <div className="flex justify-between items-center mb-2">
               <h3 className="text-xl font-semibold text-purple-400">Bookmarks</h3>
               <Link to="/bookmarks/codingbm">
-                <IoUnlink className="text-white text-2xl cursor-pointer" />
+                <IoUnlink className="text-white text-2xl cursor-pointer hover:text-gray-300 transition-colors" />
               </Link>
             </div>
             <BookMark />
@@ -99,9 +101,6 @@ const DashBoard = () => {
 };
 
 export default DashBoard;
-
-
-
 
 
 
