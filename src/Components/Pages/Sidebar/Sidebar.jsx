@@ -76,7 +76,7 @@ const Sidebar = ({isCollapsed, toggleSidebar}) => {
               <Link
                 to={link.to}
                 aria-label={`Navigate to ${link.label}`}
-                title={isCollapsed ? link.label : ''}
+                // title={isCollapsed ? link.label : ''}
                 className={`flex items-center gap-3 py-3 rounded-lg transition-all duration-200 group ${
                   isCollapsed ? 'px-3 justify-center' : 'px-4 justify-start'
                 } ${
@@ -107,7 +107,7 @@ const Sidebar = ({isCollapsed, toggleSidebar}) => {
                 className={`flex items-center gap-3 py-3 rounded-lg text-gray-300 hover:text-red-400 hover:bg-gray-700 transition cursor-pointer group ${
                   isCollapsed ? 'px-3 justify-center' : 'px-4 justify-start'
                 }`}
-                title={isCollapsed ? 'Logout' : ''}
+                // title={isCollapsed ? 'Logout' : ''}
               >
                 <span className={`${isCollapsed ? 'text-lg' : 'text-base'}`}>
                   <FaSignOutAlt />
@@ -126,7 +126,7 @@ const Sidebar = ({isCollapsed, toggleSidebar}) => {
             <li className="w-full">
               <Link
                 to="/signup"
-                title={isCollapsed ? 'Signup' : ''}
+                // title={isCollapsed ? 'Signup' : ''}
                 className={`flex items-center gap-3 py-3 rounded-lg hover:bg-gray-700 text-gray-300 transition group ${
                   isCollapsed ? 'px-3 justify-center' : 'px-4 justify-start'
                 }`}
@@ -157,7 +157,7 @@ const Sidebar = ({isCollapsed, toggleSidebar}) => {
             href="https://github.com/believeharsh" 
             target="_blank" 
             rel="noopener noreferrer"
-            title="GitHub"
+            // title="GitHub"
             className="hover:text-white transition group relative"
           >
             <FaGithub className={`${isCollapsed ? 'text-base' : 'text-xl'}`} />
@@ -171,7 +171,7 @@ const Sidebar = ({isCollapsed, toggleSidebar}) => {
             href="https://www.linkedin.com/in/believeharsh11/" 
             target="_blank" 
             rel="noopener noreferrer"
-            title="LinkedIn"
+            // title="LinkedIn"
             className="hover:text-white transition group relative"
           >
             <FaLinkedin className={`${isCollapsed ? 'text-base' : 'text-xl'}`} />
@@ -185,7 +185,7 @@ const Sidebar = ({isCollapsed, toggleSidebar}) => {
             href="https://www.instagram.com/theharshdahiya1/#" 
             target="_blank" 
             rel="noopener noreferrer"
-            title="Instagram"
+            // title="Instagram"
             className="hover:text-white transition group relative"
           >
             <FaInstagram className={`${isCollapsed ? 'text-base' : 'text-xl'}`} />
