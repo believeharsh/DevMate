@@ -1,23 +1,23 @@
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
-import { getAuth } from "firebase/auth"; 
-import { getFirestore } from "firebase/firestore"; 
+import { getAuth } from "firebase/auth";
+import { getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyCOPQv2RYxsQbgSoLYj-zcrvoDkEYegn9Q",
-  authDomain: "devtime-companion.firebaseapp.com",
-  projectId: "devtime-companion",
-  storageBucket: "devtime-companion.firebasestorage.app",
-  messagingSenderId: "130738325645",
-  appId: "1:130738325645:web:73373b7ef12607ce65bac4",
-  measurementId: "G-RGRG52QBTK"
+  apiKey: import.meta.env.VITE_APIKEY,
+  authDomain: import.meta.env.VITE_AUTH_DOMAIN,
+  projectId: import.meta.env.VITE_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_STORAGE_BUCKET, 
+  messagingSenderId: import.meta.env.VITE_MESSAGING_SENDER_ID, 
+  appId:import.meta.env.VITE_APP_ID,
+  measurementId: import.meta.env.VITE_MEASUREMENT_ID
 };
 
 const app = initializeApp(firebaseConfig);
 
 const analytics = getAnalytics(app);
 
-const auth = getAuth(app); // ✅ Initialize Auth
-const db = getFirestore(app); // ✅ Optional: Initialize Firestore
+const auth = getAuth(app);
+const db = getFirestore(app);
 
-export { auth, db, analytics }; // ✅ Export them for use
+export { auth, db, analytics }; 
